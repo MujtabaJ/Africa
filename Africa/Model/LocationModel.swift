@@ -8,4 +8,15 @@
 import Foundation
 import MapKit
 
-struct Na
+struct NationalParkLocation: Codable, Identifiable {
+    var id: String
+    var name: String
+    var image: String
+    var latitude: Double
+    var longitude: Double
+    
+    //: Computed Property
+    var locations: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+}

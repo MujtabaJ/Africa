@@ -8,13 +8,32 @@
 import SwiftUI
 
 struct InsetFactView: View {
+    // MARK: PROPERTIES
+    var animal: Animal
+    
+    // MARK: BODY
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        GroupBox {
+            TabView {
+                ForEach(animal.fact, id: \.self) { item in
+                    Text(item)
+                        .multilineTextAlignment(.leading)
+                        .padding()
+                } //: LOOP
+            } //: TAB
+            .tabViewStyle(PageTabViewStyle())
+            .frame(minHeight: 148, idealHeight: 168, maxHeight: 180)
+        }
+
     }
 }
 
+// MARK: PREVIEW
 struct InsetFactView_Previews: PreviewProvider {
+    static var animals: [Animal] = Bundle.main.decode("animals.json")
     static var previews: some View {
-        InsetFactView()
+        InsetFactView(animal: animals[0])
+            .previewLayout(.sizeThatFits)
+            .padding()
     }
 }
